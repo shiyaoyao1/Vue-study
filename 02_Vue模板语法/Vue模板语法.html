@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue模板语法</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <h1>插值语法</h1>
+        <h3>你好，{{name}}</h3>
+        <h1>指令语法</h1>
+        <a v-bind:href="web.url" >点我去{{web.name}}</a>
+        <!-- v-bind可以简写成: -->
+        <a :href="web.url" >点我也去{{web.name}}</a>
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例
+        new Vue({
+            el:'#root', //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串.
+            data:{//data中用于存储数据，数据供el指定容器使用。值暂时先写成对象
+                name:'syy',
+                web:{
+                    name:'哔哩哔哩',
+                    url:'https://www.bilibili.com/'
+                }
+            }
+        });
+
+       
+
+    </script>
+</body>
+</html> 

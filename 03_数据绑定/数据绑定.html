@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <!-- 普通写法 -->
+        <!-- 单向数据绑定:<input type="text" v-bind:value="name"><br>
+        双向数据绑定:<input type="text" v-model:value="name"><br> -->
+
+        <!-- 简写 -->
+        单向数据绑定:<input type="text" :value="name"><br>
+        双向数据绑定:<input type="text" v-model="name"><br>
+
+        <!-- v-model:value可以简写为v-model ，因为v-model默认是收集value值 -->
+        <!-- 如下代码是错误的，因为v-model只用于表单元素（输入类元素） -->
+        <!-- <h2 v-model:x="name">你好啊</h2> -->
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例
+        new Vue({
+            el:'#root', //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串.
+            data:{//data中用于存储数据，数据供el指定容器使用。值暂时先写成对象
+                name:'syy',
+                
+            }
+        });
+
+       
+
+    </script>
+</body>
+</html> 
