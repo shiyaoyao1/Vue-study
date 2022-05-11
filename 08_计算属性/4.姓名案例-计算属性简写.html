@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        姓: <input type="text" v-model="firstName"> <br>
+        名: <input type="text" v-model="lastName"> <br>
+        全名: <span>{{fullName}}</span> <br>
+        全名: <span>{{fullName}}</span> <br>
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例
+        const vm = new Vue({
+            el:'#root', 
+            data(){
+                return{
+                    firstName:'张',
+                    lastName:'三',
+                }
+            },
+           computed:{
+            //    //完整写法
+            //    fullName:{
+            //        //当fullName被读取时，getter被调用，返回值就是读取的值
+            //        //get被调用时机:1.初次读取时 2.所依赖数据发生变化时
+            //     get(){
+            //         return this.firstName.slice(0,3) + '-' + this.lastName
+            //     },
+            //     set(value){
+            //         const arr = value.split("-");
+            //         this.firstName = arr[0];
+            //         this.lastName = arr[1];
+            //     }
+            //    }
+
+            //简写
+            fullName(){
+                return this.firstName.slice(0,3) + '-' + this.lastName
+            }
+           }
+        });
+
+       
+
+    </script>
+</body>
+</html>
