@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <style>
+        *{
+            margin: 10px;
+        }
+        .basic{
+            height:100px;
+            width: 170px;
+            border: solid 3px rgb(21, 17, 17);
+        }
+        .mood1{
+            background: rgb(241, 72, 72);
+        }
+        .mood2{
+            font-size: 27px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <!-- 绑定class样式，字符串写法 用于样式类名不去确定，要动态指定 -->
+        <div  class="basic" :class="mood" @click="changeMood">{{name}}</div>
+
+        <!-- 绑定class样式，数组写法，用于要绑定的样式个数不确定，名字也不确定 -->
+        <div  class="basic" :class="classArr">{{name}}</div>
+
+        <!-- 绑定class样式，对象写法，用与绑定样式个数确定，名字也确定 -->
+        <div  class="basic" :class="classObj">{{name}}</div>
+        
+        <!-- 绑定style样式，对象写法 -->
+        <div  class="basic" :style="styleObj" >{{name}}</div>
+        <!-- 绑定style样式，数组写法 -->
+        <div  class="basic" :style="styleArr">{{name}}</div>
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例
+        new Vue({
+            el:'#root', 
+            data(){
+                return{
+                    name:'syy',
+                    mood:'mood1',
+                    classArr:['mood1','mood2'],
+                    classObj:{
+                        mood1:false,
+                        mood2:false,
+                    },
+                    styleObj:{
+                        color:'blue'
+                    },
+                    styleObj2:{
+                       backgroundColor:'red' 
+                    },
+                    styleArr:[
+                        {
+                            color:'green'
+                        },
+                        {
+                       backgroundColor:'gray' 
+                    },
+                    ],
+                }
+            },
+            methods: {
+                changeMood(){
+
+                }
+            },
+        });
+
+       
+
+    </script>
+</body>
+</html> 

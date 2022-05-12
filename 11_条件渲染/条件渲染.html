@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <h2>当前n值是:{{n}}</h2>
+        <button @click="n++">点我n+1</button>
+        <!-- 使用v-show条件渲染 -->
+        <!-- <h1 v-show="false">欢迎来到{{name}}</h1> -->
+        <!-- <h1 v-show="1 === 1">欢迎来到{{name}}</h1> -->
+
+        <!-- 用v-if做条件渲染 -->
+        <!-- <h1 v-if="false">欢迎来到{{name}}</h1> -->
+        <!-- <h1 v-if="1 === 1">欢迎来到{{name}}</h1> -->
+
+        <!-- v-else和v-else-if -->
+        <!-- <div v-if="n === 1">Angular</div>
+        <div v-else-if="n === 2">React</div>
+        <div v-else-if="n === 3">Vue</div>
+        <div v-else>hhh</div> -->
+    <template v-if="n === 1">
+        <h2>你好</h2>
+        <h2>重庆</h2>
+        <h2>!!!</h2>
+    </template>
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例
+        const vm = new Vue({
+            el:'#root', 
+            data(){
+                return{
+                    name:'重庆',
+                    flag:false,
+                    n:0,
+                }
+            }
+        });
+
+       
+
+    </script>
+</body>
+</html> 
