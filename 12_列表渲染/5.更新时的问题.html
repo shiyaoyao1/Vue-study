@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        
+        <h2>人员列表</h2>
+        <button @click="updateMei">更新马冬梅信息</button>
+        <ul>
+            <li  v-for="(p,index) of people" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.gender}}
+            </li>
+        </ul> 
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        
+       //用computed实现
+       const vm = new Vue({
+        el:'#root', 
+            data(){
+                return{
+                    people:[
+                        {id:001,name:'马冬梅',age:30,gender:'女'},
+                        {id:002,name:'周冬雨',age:31,gender:'女'},
+                        {id:003,name:'周杰伦',age:18,gender:'男'},
+                        {id:004,name:'温兆伦',age:19,gender:'男'}
+                    ], 
+                   
+                }
+                
+            },
+           methods: {
+               updateMei(){
+                //    this.people[0].name = '马老师', //奏效
+                //    this.people[0].age = '50',
+                //    this.people[0].gender = '男'
+                this.people[0] = {id:'001',name:'马老师',age:'50',gender:'男'}
+               }
+           },
+       })
+
+    </script>
+</body>
+</html> 

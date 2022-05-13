@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入名字" v-model="keyWords">
+        <button @click="sortType = 2">年龄升序</button>
+        <button @click="sortType = 1">年龄降序</button>
+        <button @click="sortType = 0">原顺序</button>
+        <ul>
+            <li  v-for="(p,index) of filPerson" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.gender}}
+            </li>
+        </ul> 
+        <div v-if="filPerson.length == 0">没有找到符合的结果</div>
+        
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        
+       //用computed实现
+       new Vue({
+        el:'#root', 
+            data(){
+                return{
+                    keyWords:'',
+                    people:[
+                        {id:001,name:'马冬梅',age:30,gender:'女'},
+                        {id:002,name:'周冬雨',age:31,gender:'女'},
+                        {id:003,name:'周杰伦',age:18,gender:'男'},
+                        {id:004,name:'温兆伦',age:19,gender:'男'}
+                    ], 
+                    //0代表原顺序，1代表降序，2代表升序
+                    sortType:'0',
+                }
+            },
+            computed:{
+                filPerson(){
+                    const arr =  this.people.filter((p)=>{
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+                    if(this.sortType){
+                        arr.sort((a,b)=>{
+                            return this.sortType === 1 ? b.age-a.age : a.age-b.age
+                        })
+                    }
+                    return arr
+                }
+            }
+       })
+
+    </script>
+</body>
+</html> 
