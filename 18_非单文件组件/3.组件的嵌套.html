@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+       
+    </div>
+   
+    <script type="text/javascript">
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        //定义friends组件
+        const friends = Vue.extend({
+            name:'friends',
+            template:`
+            <div>
+                <h2>朋友名字:{{name}}</h2>
+                <h2>朋友年龄:{{age}}</h2> 
+            </div>
+            `,
+            data(){
+                return {
+                    name:'yyp',
+                    age:26
+                }
+            }
+        })
+
+        // 定义person组件
+        const person = Vue.extend({
+            name:'person',
+            template:`
+            <div>
+                <h2>名字:{{name}}</h2>
+                <h2>年龄:{{age}}</h2>
+                <friends></friends> 
+            </div>
+            `,
+            data(){
+                return {
+                    name:'syy',
+                    age:21
+                }
+            },
+            //注册组件（局部）
+            components:{
+                friends
+            }
+        }) 
+
+        //定义hello组件
+        const hello = Vue.extend({
+            template:`
+            <h1>{{msg}}</h1>
+            `,
+            data(){
+                return {
+                    msg:'欢迎浏览'
+                }
+            }
+        })
+
+        const app = Vue.extend({
+            template:`
+            <div>
+                <hello></hello>
+                <person></person>   
+            </div>
+            `,
+            components:{
+                person,
+                hello
+            }
+        })
+
+        //创建Vue实例
+        new Vue({
+            el:'#root', 
+            template:`<app></app>`,
+            data(){
+                return {
+
+                }
+            },
+            //注册组件
+            components:{app},
+        });
+
+       
+
+    </script>
+</body>
+</html> 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <!-- VueComponent.prototype.__proto__ === Vue.prototype -->
+    
+    <!-- 准备容器 -->
+    <div id="root">
+        <person></person>
+        
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+    Vue.prototype.x = 99    
+    // 定义person组件
+    const person = Vue.extend({
+            name:'person',
+            template:`
+            <div>
+                <h2>名字:{{name}}</h2>
+                <h2>年龄:{{age}}</h2>
+                <button @click="showX">点我输出</button>
+            </div>
+            `,
+            data(){
+                return {
+                    name:'syy',
+                    age:21
+                }
+            },
+           methods:{
+               showX(){
+                   console.log(this.__proto__ === person.prototype); //true
+               }
+           }
+        }) 
+
+    const vm = new Vue({
+        el:'#root',
+        data(){
+            return {
+                msg:'你好'
+            }
+        },
+        components:{
+            person
+        }
+    })    
+
+     console.log(person.prototype.__proto__ === Vue.prototype) //true
+
+    //定义一个构造函数
+    /* function Demo(){
+        this.a = 1;
+        this.b = 2;
+    }
+    //创建一个Demo实例对象
+    const d = new Demo()
+
+    console.log(Demo.prototype) //显式示原型属性
+
+    console.log(d.__proto__) //隐式原型属性
+
+    console.log(Demo.prototype === d.__proto__)
+
+    //通过显式原型属性操作原型对象，追加属性x，值为99
+    Demo.prototype.x = 99;
+
+    console.log(d); */
+
+
+</script>
+</html> 
