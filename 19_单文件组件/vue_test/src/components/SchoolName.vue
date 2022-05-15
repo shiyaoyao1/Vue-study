@@ -1,16 +1,16 @@
 <template>
-  <div >
+  <div class="demo">
       <!-- <h1>{{msg}}</h1> -->
-      <h2 >学校名字:{{name | mySlice}}</h2>
+      <h2 >学校名字:{{name}}</h2>
       <!-- <h2>学生年龄:{{myAge}}</h2> -->
       <h2>学校地址:{{address}}</h2>
-      <button @click='test'>点我测试hello方法</button>
+      <!-- <button @click='test'>点我测试hello方法</button> -->
       <!-- <button @click='changeAge'>尝试修改收到的年龄</button> -->
   </div>
 </template>
 
 <script>
-
+import pubsub from 'pubsub-js'
 export default {
     name:'StudentName',
     data() {
@@ -21,11 +21,16 @@ export default {
             address:'重庆'
         }
     },
-    methods:{
+    mounted() {
+        this.pubId = pubsub.subscribe('hello',function(msg,data){
+            console.log(`有人发布了hello消息,hello消息的回调执行了 ${msg}  ${data}`)
+        })
+    },
+    /* methods:{
         test(){
             this.hello()
         }
-    }
+    } */
     //传入的参数最好别改
     
 
@@ -53,10 +58,14 @@ export default {
             required:true, //name是必要的
         },
     } */
-
+    beforeDestroy() {
+        pubsub.unsubscribe(this.pubId)
+    },
 }
 </script>
 
-<style>
-
+<style scoped>
+.demo{
+    background-color: rgb(109, 182, 255);
+}
 </style>

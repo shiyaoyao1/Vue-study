@@ -1,10 +1,11 @@
 <template>
-  <div >
+  <div class='demo'>
       <!-- <h1>{{msg}}</h1> -->
       <h2 >学生名字:{{name}}</h2>
       <!-- <h2>学生年龄:{{myAge}}</h2> -->
-      <h2>学生性别:{{gender}}</h2>
-      <input type="text" v-fbind:value='name'>
+      <h2 class="qwe">学生性别:{{gender}}</h2>
+      <button @click='sendStudentName'>点我发送数据</button>
+      <!-- <input type="text" v-fbind:value='name'> -->
       <!-- <button @click='changeAge'>尝试修改收到的年龄</button> -->
   </div>
 </template>、
@@ -12,6 +13,7 @@
 <script>
 //引入一个混合
 
+import pubsub from 'pubsub-js'
 export default {
     name:'StudentName',
     data() {
@@ -20,6 +22,11 @@ export default {
             // myAge:this.age
             name:'syy',
             gender:'男'
+        }
+    },
+    methods: {
+        sendStudentName(){
+           pubsub.publish('hello',666)
         }
     },
     //传入的参数最好别改
@@ -52,6 +59,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.demo{
+    background-color: rgb(255, 144, 65);
+}
 </style>

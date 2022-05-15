@@ -13,10 +13,10 @@ Vue.config.productionTip = false
 // Vue.mixin(mixin)
 
 //引入插件
-import plugins from './plugins'
+// import plugins from './plugins'
 
 //应用插件
-Vue.use(plugins)
+// Vue.use(plugins,1,2,3)
 
 //创建vue实例
 new Vue({

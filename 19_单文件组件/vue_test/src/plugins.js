@@ -1,9 +1,9 @@
 import Vue from "vue";
 
 export default {
-    install(Vue){
+    install(Vue,x,y,z){
         console.log("已安装插件");
-
+        console.log(x,y,z)
         //全局过滤器
         Vue.filter('mySlice',function(value){
             return value.slice(0,4)
