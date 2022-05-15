@@ -1,15 +1,16 @@
 <template>
   <div >
       <!-- <h1>{{msg}}</h1> -->
-      <h2 >学校名字:{{name | mySlice}}</h2>
+      <h2 >学生名字:{{name}}</h2>
       <!-- <h2>学生年龄:{{myAge}}</h2> -->
-      <h2>学校地址:{{address}}</h2>
-      <button @click='test'>点我测试hello方法</button>
+      <h2>学生性别:{{gender}}</h2>
+      <input type="text" v-fbind:value='name'>
       <!-- <button @click='changeAge'>尝试修改收到的年龄</button> -->
   </div>
-</template>
+</template>、
 
 <script>
+//引入一个混合
 
 export default {
     name:'StudentName',
@@ -17,18 +18,12 @@ export default {
         return {
             // msg:'加油学习Vue',
             // myAge:this.age
-            name:'CQUPT',
-            address:'重庆'
+            name:'syy',
+            gender:'男'
         }
     },
-    methods:{
-        test(){
-            this.hello()
-        }
-    }
     //传入的参数最好别改
     
-
     // props:['name','gender','age'] //简单声明接收
 
     //接收的同时对数据类型进行限制
