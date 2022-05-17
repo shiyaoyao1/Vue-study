@@ -1,42 +1,26 @@
 <template>
   <div>
-    <!-- <StudentName @demo='getStudentName'/> -->
-    <StudentName ref='student' />
-    <hr>
-    <SchoolName />
+    <button @click='getStudents'>获取学生信息</button>
   </div>
 </template>
 
 <script>
-
-import SchoolName from './components/SchoolName.vue'
-import StudentName from './components/StudentName.vue'
-
-
+import axios from 'axios'
 export default {
     name:'App',
-    components: { StudentName, SchoolName },
-    data() {
-      return {
-        
-      }
-    },
     methods: {
-      getStudentName(name){
-        console.log('App收到了学校名字:',name);
+      getStudents(){
+        axios.get('http://localhost:5000/students').then(
+          response => {
+            console.log('请求成功',response.data)
+            },
+          error => {
+            console.log('请求失败',error.message)
+            }
+        )
+
       }
     },
-    /* mounted(){
-      this.$refs.student.$once('demo',this.getStudentName)
-    } */
+   
 }
 </script>
-
-<style lang='less'>
-.demo{
-  background-color: pink;
-  .qwe{
-    font-size: 40px;
-  }
-}
-</style>
