@@ -13,8 +13,8 @@
         <!-- 遍历数组 -->
         <h2>人员列表</h2>
         <ul>
-            <li v-for="(p,index) of people" :key="index">
-                {{p.name}}-{{p.age}}
+            <li v-for="(item,index) of people" :key="item.id">
+                {{item.name}}-{{item.age}}
             </li>
         </ul> 
 
